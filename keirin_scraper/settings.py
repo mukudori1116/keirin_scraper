@@ -9,10 +9,10 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'keirin_scraper'
+BOT_NAME = 'Webspider'
 
-SPIDER_MODULES = ['keirin_scraper.spiders']
-NEWSPIDER_MODULE = 'keirin_scraper.spiders'
+SPIDER_MODULES = ['Webspider.spiders']
+NEWSPIDER_MODULE = 'Webspider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -65,7 +65,7 @@ DOWNLOAD_DELAY = 3
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'keirin_scraper.pipelines.KeirinScraperPipeline': 300,
+   'keirin_scraper.pipelines.KeirinScraperPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

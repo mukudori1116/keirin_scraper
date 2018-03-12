@@ -22,3 +22,4 @@ class KeirinScraperItem(scrapy.Item):
     player8 = scrapy.Field()
     player9 = scrapy.Field()
     odds_table = scrapy.Field()
+    order = scrapy.Field()

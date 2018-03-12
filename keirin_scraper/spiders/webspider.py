@@ -24,9 +24,6 @@ class KeirinSpider(scrapy.Spider):
         for href in response.css(
                 '.kaisai-program_table .result a::attr(href)'):
             full_url = response.urljoin(href.extract())
-            # urls.append(full_url)
-            # race_id = re.findall(r'\d{16}', full_url)[0]
-            # race_ids.append(race_id)
         yield scrapy.Request(full_url, callback=self.parse_race)
 
         follow_link = response.css('.raceinfo-date_nav-next a::attr(href)')
@@ -106,3 +103,7 @@ class KeirinSpider(scrapy.Spider):
             {'first': int, 'second': int, 'third': int}
         )
         item['odds_table'] = odds_table
+
+        # 結果
+        order = response.css('.result_tabel td.num span::text').extract()
+        item['order'] = tuple([int(num) for num in order])

@@ -8,4 +8,5 @@
 
 class KeirinScraperPipeline(object):
     def process_item(self, item, spider):
+        item['odds_table'] = item['odds_table'].to_json(orient='values')
         return item
