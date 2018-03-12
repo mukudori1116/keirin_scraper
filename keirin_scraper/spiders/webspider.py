@@ -29,10 +29,10 @@ class KeirinSpider(scrapy.Spider):
             else:
                 pass
 
-        # follow_link = response.css('.raceinfo-date_nav-next a::attr(href)')
-        # follow_url = response.urljoin(follow_link.extract_first())
-        # if follow_url is not None:
-        #     yield scrapy.Request(follow_url, callback=self.parse)
+        follow_link = response.css('.raceinfo-date_nav-next a::attr(href)')
+        follow_url = response.urljoin(follow_link.extract_first())
+        if follow_url is not None:
+            yield scrapy.Request(follow_url, callback=self.parse)
 
     def parse_race(self, response):
         item = KeirinScraperItem()
