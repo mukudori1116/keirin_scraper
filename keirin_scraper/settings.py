@@ -65,8 +65,8 @@ DOWNLOAD_DELAY = 5
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    # 'keirin_scraper.pipelines.KeirinScraperPipeline': 300,
-    'keirin_scraper.pipelines.JsonWriterPipeline': 300,
+    'keirin_scraper.pipelines.KeirinScraperPipeline': 1,
+    # 'keirin_scraper.pipelines.JsonWriterPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -89,3 +89,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+###############
+# OUTPUT FILE #
+###############
+FEED_FORMAT = 'jsonlines'
+FEED_URI = 's3://mukudori/keirin/%(name)s/%(time)s.jl'
