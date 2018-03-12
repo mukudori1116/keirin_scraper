@@ -11,7 +11,7 @@ import pandas as pd
 class KeirinSpider(scrapy.Spider):
     name = "Webspider"
     allowed_domains = ["keirin.kdreams.jp"]
-    start_urls = ['https://keirin.kdreams.jp/kaisai/2011/12/04/']
+    start_urls = ['https://keirin.kdreams.jp/kaisai/2011/12/22/']
     rules = (
         # データ抽出ルール
         Rule(LinkExtractor(

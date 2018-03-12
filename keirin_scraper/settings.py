@@ -65,7 +65,8 @@ DOWNLOAD_DELAY = 5
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'keirin_scraper.pipelines.KeirinScraperPipeline': 300,
+    # 'keirin_scraper.pipelines.KeirinScraperPipeline': 300,
+    'keirin_scraper.pipelines.JsonWriterPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
