@@ -11,7 +11,7 @@ import pandas as pd
 class KeirinSpider(scrapy.Spider):
     name = "Webspider"
     allowed_domains = ["keirin.kdreams.jp"]
-    start_urls = ['https://keirin.kdreams.jp/kaisai/2008/01/01/']
+    start_urls = ['https://keirin.kdreams.jp/kaisai/2011/12/04/']
     rules = (
         # データ抽出ルール
         Rule(LinkExtractor(
@@ -24,11 +24,15 @@ class KeirinSpider(scrapy.Spider):
         for href in response.css(
                 '.kaisai-program_table .result a::attr(href)'):
             full_url = response.urljoin(href.extract())
-        yield scrapy.Request(full_url, callback=self.parse_race)
+            if href is not None:
+                yield scrapy.Request(full_url, callback=self.parse_race)
+            else:
+                pass
 
         follow_link = response.css('.raceinfo-date_nav-next a::attr(href)')
         follow_url = response.urljoin(follow_link.extract_first())
-        yield scrapy.Request(follow_url, callback=self.parse)
+        if follow_url is not None:
+            yield scrapy.Request(follow_url, callback=self.parse)
 
     def parse_race(self, response):
         item = KeirinScraperItem()
@@ -55,6 +59,10 @@ class KeirinSpider(scrapy.Spider):
                     for data
                     in player.css('td').extract()
                 ]
+                if re.match(r"\d\.\d{3}\.\d{2}", datas[4][0]):
+                    gear = re.findall(r"\d\.\d{2}(\d\.\d{2})", datas[4][0])[0]
+                else:
+                    gear = datas[4][0]
                 pdic = {
                     'bike_num': int(datas[0][0]),
                     'name': datas[1][0],
@@ -63,7 +71,7 @@ class KeirinSpider(scrapy.Spider):
                     'year': int(datas[1][-1]),
                     'rank': datas[2][0],
                     'feet': datas[3][0],
-                    'gear': float(datas[4][0]),
+                    'gear': float(gear),
                     'point': float(datas[5][0]),
                     'S': int(datas[6][0]),
                     'B': int(datas[7][0]),
@@ -106,5 +114,7 @@ class KeirinSpider(scrapy.Spider):
         item['odds_table'] = odds_table
 
         # 結果
-        order = response.css('.result_tabel td.num span::text').extract()
+        order = response.css('.result_table td.num span::text').extract()
         item['order'] = tuple([int(num) for num in order])
+
+        yield item
