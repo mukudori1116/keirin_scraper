@@ -114,7 +114,7 @@ class KeirinSpider(scrapy.Spider):
         item['odds_table'] = odds_table
 
         # 結果
-        order = response.css('.result_tabel td.num span::text').extract()
+        order = response.css('.result_table td.num span::text').extract()
         item['order'] = tuple([int(num) for num in order])
 
         yield item
