@@ -22,7 +22,8 @@ class JsonWriterPipeline(object):
         self.file.close()
 
     def process_item(self, item, spider):
-        item['odds_table'] = item['odds_table'].to_json(orient='values')
+        if not isinstance(item['odds_table'], str):
+            item['odds_table'] = item['odds_table'].to_json(orient='values')
         line = json.dumps(dict(item)) + "\n"
         self.file.write(line)
         return item

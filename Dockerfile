@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["scrapy", "crawl", "Webspider"]
+CMD ["scrapy", "crawl", "Webspider", "-s", "JOBDIR=crawls/somespider-1"]
