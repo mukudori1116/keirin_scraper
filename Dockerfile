@@ -1,4 +1,4 @@
-FROM python:3.6.3
+FROM conda/miniconda3-centos7
 
 WORKDIR /app
 
@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["scrapy", "crawl", "Webspider", "-s", "JOBDIR=crawls/somespider-1"]
+# CMD ["scrapy", "crawl", "Webspider", "-s", "JOBDIR=crawls/somespider-1"]

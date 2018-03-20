@@ -1,0 +1,11 @@
+[Unit]
+Description=Crawler
+
+[Service]
+ExecStart=/clawl.sh
+Restart=always
+Type=forking
+PIDFile=/var/run/sampled.pid
+
+[Install]
+WantedBy=multi-user.target

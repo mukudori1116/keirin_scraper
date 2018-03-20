@@ -16,7 +16,7 @@ class KeirinScraperPipeline(object):
 class JsonWriterPipeline(object):
 
     def open_spider(self, spider):
-        self.file = open('items.jl', 'w')
+        self.file = open('/data/items.jl', 'w')
 
     def close_spider(self, spider):
         self.file.close()
