@@ -84,8 +84,8 @@ class KeirinSpider(scrapy.Spider):
                     'third': int(datas[14][0]),
                     'over_rank': int(datas[15][0]),
                     'win_rate': float(datas[16][0]),
-                    'in_second_rate': float(datas[16][0]),
-                    'in_third_rate': float(datas[16][0]),
+                    'in_second_rate': float(datas[16][1]),
+                    'in_third_rate': float(datas[16][2]),
                 }
                 item['player{}'.format(pdic['bike_num'])] = pdic
                 players.append(pdic)
