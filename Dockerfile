@@ -1,6 +1,8 @@
 FROM conda/miniconda3-centos7
 
-WORKDIR /app
+RUN yum -y upgrade
+RUN yum -y reinstall glibc-common
+RUN yum groupinstall -y "Development Tools"
 
 COPY requirements.txt .
 
